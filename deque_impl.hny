@@ -1,0 +1,51 @@
+from synch import Lock, acquire, release
+from alloc import malloc, free
+
+def Deque() returns empty:
+    empty = { .head: None, .tail: None, .lock: Lock()}
+
+def put_left(d, v):
+    """
+    d points to a deque and v is some value. 
+    Put v at the left-end of the deque. 
+    Does not return a value.
+    """
+    let node = malloc({ .value: v, .prev: None, .next: None}):
+        acquire(?d->lock)
+        if d->head == None:
+            d->head = d->tail = node
+        else:
+            d->head->prev = node
+            d->head = node
+        release(?d->lock)
+
+def put_right(d, v): 
+    """
+    d points to a deque and v is some value. 
+    Put v at the right-end of the deque. 
+    Does not return a value.
+    """
+    let node = malloc({ .value: v, .prev: None, .next: None}):
+        acquire(?d->lock)
+        if d->tail == None:
+            d->tail = d->head = node
+        else:
+            d->tail->next = node
+            d->tail = node
+        release(?d->lock)
+
+def get_left(d) returns next: 
+    """
+    d points to a deque. 
+    If the deque is empty, the operation should return None. 
+    Otherwise it should remove and return the value at the left-end of the deque.
+    """
+    pass
+
+def get_right(d) returns next: 
+    """
+    d points to a deque.
+    If the deque is empty, the operation should return None. 
+    Otherwise it should remove and return the value at the right-end of the deque.
+    """
+    pass

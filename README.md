@@ -31,3 +31,7 @@ You can try different numbers of threads of each type, but beware that model che
 
 # Submitting your work
 You have to submit deque.hny, deque impl.hny, and deque test.hny to CMSX. If you work in a group, submit your work as a single group in CMSX.
+
+# Files to look at
+- `deque.hny`: The specification for the 4 methods. Need to use `atomically` and `sequential` keywords so that the code acts exactly as what we want to achieve.
+- `deque test.hny`: The implementation for the 4 methods. Cannot use `atomically` and `sequential`, use `Lock`, `acquire`, and `release` from the synch module
