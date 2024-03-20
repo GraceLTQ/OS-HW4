@@ -40,7 +40,17 @@ def get_left(d) returns next:
     If the deque is empty, the operation should return None. 
     Otherwise it should remove and return the value at the left-end of the deque.
     """
-    pass
+    acquire(?d->lock)
+    let node = d->head:
+        if node == None:
+            next = None
+        else:
+            next = node->value
+            d->head = node->next
+            if d->head == None:
+                d->tail = None
+            free(node)
+    release(?d->lock)
 
 def get_right(d) returns next: 
     """
@@ -48,4 +58,14 @@ def get_right(d) returns next:
     If the deque is empty, the operation should return None. 
     Otherwise it should remove and return the value at the right-end of the deque.
     """
-    pass
+    acquire(?d->lock)
+    let node = d->tail:
+        if node == None:
+            next = None
+        else:
+            next = node->value
+            d->tail = node->prev
+            if d->tail == None:
+                d->head = None
+            free(node)
+    release(?d->lock)
