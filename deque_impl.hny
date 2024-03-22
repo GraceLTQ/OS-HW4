@@ -11,10 +11,11 @@ def put_left(d, v):
     Does not return a value.
     """
     acquire(?d->lock)
-    let node = malloc({ .value: v, .prev: None, .next: d->head}):
+    let node = malloc({ .value: v, .prev: None, .next: None}):
         if d->head == None:
             d->head = d->tail = node
         else:
+            node->next=d->head
             d->head->prev = node
             d->head = node
     release(?d->lock)
@@ -26,11 +27,12 @@ def put_right(d, v):
     Does not return a value.
     """
     acquire(?d->lock)
-    let node = malloc({ .value: v, .prev: d->tail, .next: None}):
+    let node = malloc({ .value: v, .prev: None, .next: None}):
         if d->tail == None:
             d->tail = d->head = node
         else:
             d->tail->next = node
+            node->prev=d->tail
             d->tail = node
     release(?d->lock)
 
@@ -48,6 +50,7 @@ def get_left(d) returns next:
         else:
             next = node->value
             d->head = node->next
+            d->head->prev=None
             if d->head == None:
                 d->tail = None
             free(node)
@@ -66,6 +69,7 @@ def get_right(d) returns next:
         else:
             next = node->value
             d->tail = node->prev
+            d->tail->next=None
             if d->tail == None:
                 d->head = None
             free(node)
