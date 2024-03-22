@@ -1,0 +1,66 @@
+# Below is the sample code from the textbook: "queue_btest1.hny"
+
+# import queue
+
+# const NOPS = 4
+# q = queue.Queue()
+
+# def put_test(self):
+#     print("call put", self)
+#     queue.put(?q, self)
+#     print("done put", self)
+
+# def get_test(self):
+#     print("call get", self)
+#     let v = queue.get(?q):
+#         print("done get", self, v)
+
+# nputs = choose {1..NOPS-1}
+# for i in {1..nputs}:
+#     spawn put_test(i)
+# for i in {1..NOPS-nputs}:
+#     spawn get_test(i)
+
+
+import deque
+
+const N_PUT_LEFT = 1
+const N_PUT_RIGHT = 1
+const N_GET_LEFT = 1
+const N_GET_RIGHT = 1
+d = deque.Deque()
+
+def put_left_test(self):
+    print("call put_left", (self,"left"))
+    deque.put_left(?d, (self,"left"))
+    print("done put_left", (self,"left"))
+
+def put_right_test(self):
+    print("call put_right", (self,"right"))
+    deque.put_right(?d, (self,"right"))
+    print("done put_right", (self,"right"))
+
+def get_left_test(self):
+    print("call get_left", self)
+    let v = deque.get_left(?d):
+        print("done get_left", self, v)
+
+def get_right_test(self):
+    print("call get_right", self)
+    let v = deque.get_right(?d):
+        print("done get_right", self, v)
+
+# Here goes the actual testing logic
+for i in {1..N_PUT_LEFT}:
+    spawn put_left_test(i)
+
+for i in {1..N_PUT_RIGHT}:
+    spawn put_right_test(i)
+
+for i in {1..N_GET_LEFT}:
+    spawn get_left_test(i)
+
+for i in {1..N_GET_RIGHT}:
+    spawn get_right_test(i)
+
+
