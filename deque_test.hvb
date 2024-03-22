@@ -1,12 +1,12 @@
 Issue: Safety violation
 
 Modules:
-  alloc: C:\Users\evely\AppData\Roaming\Python\Python312\site-packages\harmony_model_checker\modules\alloc.hny
-  bag: C:\Users\evely\AppData\Roaming\Python\Python312\site-packages\harmony_model_checker\modules\bag.hny
-  __main__: deque_test.hny
-  synch: C:\Users\evely\AppData\Roaming\Python\Python312\site-packages\harmony_model_checker\modules\synch.hny
-  deque: deque_impl.hny
-  list: C:\Users\evely\AppData\Roaming\Python\Python312\site-packages\harmony_model_checker\modules\list.hny
+  alloc: /Users/liutianqing/.local/lib/python3.8/site-packages/harmony_model_checker/modules/alloc.hny
+  bag: /Users/liutianqing/.local/lib/python3.8/site-packages/harmony_model_checker/modules/bag.hny
+  __main__: /Users/liutianqing/Desktop/OS-HW4/deque_test.hny
+  synch: /Users/liutianqing/.local/lib/python3.8/site-packages/harmony_model_checker/modules/synch.hny
+  deque: /Users/liutianqing/Desktop/OS-HW4/deque_impl.hny
+  list: /Users/liutianqing/.local/lib/python3.8/site-packages/harmony_model_checker/modules/list.hny
 
 ================================================
 Running thread T0: __init__()
@@ -2524,7 +2524,7 @@ shared variables:
   alloc$next: 1
   alloc$pool: [ { "next": None, "prev": None, "value": [ 2, "left" ] } ]
   d: { "head": ?alloc$pool[0], "lock": False, "tail": ?alloc$pool[0] }
-state id: 3121
+state id: 2872
 ================================================
 
 Step 284:
