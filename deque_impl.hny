@@ -10,14 +10,14 @@ def put_left(d, v):
     Put v at the left-end of the deque. 
     Does not return a value.
     """
-    let node = malloc({ .value: v, .prev: None, .next: None}):
-        acquire(?d->lock)
+    acquire(?d->lock)
+    let node = malloc({ .value: v, .prev: None, .next: d->head}):
         if d->head == None:
             d->head = d->tail = node
         else:
             d->head->prev = node
             d->head = node
-        release(?d->lock)
+    release(?d->lock)
 
 def put_right(d, v): 
     """
@@ -25,14 +25,15 @@ def put_right(d, v):
     Put v at the right-end of the deque. 
     Does not return a value.
     """
-    let node = malloc({ .value: v, .prev: None, .next: None}):
-        acquire(?d->lock)
+    acquire(?d->lock)
+    let node = malloc({ .value: v, .prev: d->tail, .next: None}):
         if d->tail == None:
             d->tail = d->head = node
         else:
             d->tail->next = node
             d->tail = node
-        release(?d->lock)
+    release(?d->lock)
+
 
 def get_left(d) returns next: 
     """

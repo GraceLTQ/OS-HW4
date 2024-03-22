@@ -37,10 +37,10 @@ def get_right(d) returns next:
     Otherwise it should remove and return the value at the right-end of the deque.
     """
     atomically:
-      if !d == []:
+      if len(!d) == 0:
         next = None
       else:
-        rightIdx = len(!d) - 1
-        next = (!d)[rightIdx]
-        del (!d)[rightIdx]
+        next = (!d)[len(!d) - 1]
+        del (!d)[len(!d) - 1]
+
 
